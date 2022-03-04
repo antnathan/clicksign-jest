@@ -1,7 +1,7 @@
 <script setup>
 import { ref, reactive } from 'vue'
 
-import VInput from './VInput.vue';
+import { VInput } from '../VInput';
 
 defineProps({
   modelValue: {
