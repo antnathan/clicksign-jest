@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 
 import { VInput } from '../VInput';
 
@@ -17,7 +17,8 @@ const formData = reactive({
   password: '',
 });
 
-const handleSubmit = () => {
+const handleSubmit = (e) => {
+  e.preventDefault();
   if(!formData.email || !formData.password) return;
 
   emit('submit', formData);
@@ -37,5 +38,7 @@ const handleSubmit = () => {
       v-model="formData.password"
       type="password"
     />
+
+    <button>Submit</button>
   </form>
 </template>
