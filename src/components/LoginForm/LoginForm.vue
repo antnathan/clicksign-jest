@@ -1,12 +1,12 @@
 <script setup>
-import { reactive } from 'vue'
+import { reactive, watchEffect } from 'vue'
 
 import { VInput } from '../VInput';
 
-defineProps({
-  modelValue: {
-    type: [String, Number],
-    default: '',
+const props = defineProps({
+  data: {
+    type: Object,
+    default: () => ({}),
   },
 });
 
@@ -17,10 +17,15 @@ const formData = reactive({
   password: '',
 });
 
+watchEffect(() => {
+  formData.email = props.data?.email,
+  formData.password = props.data?.password
+})
+
+
 const handleSubmit = (e) => {
   e.preventDefault();
   if(!formData.email || !formData.password) return;
-
   emit('submit', formData);
 }
 </script>
@@ -28,17 +33,19 @@ const handleSubmit = (e) => {
 <template>
   <form @submit="handleSubmit">
     <VInput
-      label="Email"
       v-model="formData.email"
+      data-testid="email-input"
+      label="Email"
       type="email"
     />
 
     <VInput
-      label="Password"
       v-model="formData.password"
+      data-testid="password-input"
       type="password"
+      label="Password"
     />
 
-    <button>Submit</button>
+    <button type="submit" data-testid="submit-button">Submit</button>
   </form>
 </template>

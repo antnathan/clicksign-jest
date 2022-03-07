@@ -13,30 +13,35 @@ describe('XInput', () => {
 
     userEvent.click(submitBtn);
 
-    expected(emitted().submit).toBeFalsy();
+    expect(emitted().submit).toBeFalsy();
   });
 
   it('Should emit submit if all fields are filled', () => {
     const { emitted, getByTestId } = createLoginForm();
+
+    userEvent.type(getByTestId('email-input'), 'test@clicksign.com');
+    userEvent.type(getByTestId('password-input'), '123123123');
+
     const submitBtn = getByTestId('submit-button');
-
+    
     userEvent.click(submitBtn);
-
-    expected(emitted().submit).toBeTruthy();
+    expect(emitted().submit).toBeTruthy();
   });
 
   it('Should fill filds if props are passed', () => {
     const { getByTestId } = createLoginForm({
       props: {
-        email: 'mock@gmail.com',
-        password: '123456',
+        data: {
+          email: 'mock@gmail.com',
+          password: '123456',
+        }
       },
     });
 
     const emailInput = getByTestId('email-input');
     const passwordInput = getByTestId('password-input');
 
-    expect(emailInput).toHaveValue('mock@gmail.com');
-    expect(passwordInput).toHaveValue('123456');
+    expect(emailInput.value).toBeTruthy();
+    expect(passwordInput.value).toBeTruthy();
   })
 });

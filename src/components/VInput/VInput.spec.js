@@ -1,5 +1,12 @@
-import { render } from '@testing-library/vue';
+import "@testing-library/dom";
+import { render } from "@testing-library/vue";
 
-const createXInput = (config) => render(XInput, config);
+import { VInput } from ".";
 
-describe('XInput', () => {});
+const createVInput = (config) => render(VInput, config);
+
+describe("VInput.vue", () => {
+  it("", () => {
+    expect(true).toBe(true);
+  });
+});
