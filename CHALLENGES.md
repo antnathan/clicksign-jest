@@ -28,7 +28,7 @@ Considerações:
 
   - Em algumas situações pode ser necessario fazer o uso de mocks.
 
-  - Não se apague a usar somente o getByTextId. A testing library fornce outros metodos para ver/pegar elementos (Se ta no jogo é pra usar).
+  - Não se apague a usar somente o getByTestId. A testing library fornce outros metodos para ver/pegar elementos (Se ta no jogo é pra usar).
 
   - Você não deve se importar com comportamentos internos do componente, se o componente altera a variavel A ou B após um click no botão isso não te interessa a não ser que seja mostrado na tela, emita um evento ou altera o output de alguma forma.
 
